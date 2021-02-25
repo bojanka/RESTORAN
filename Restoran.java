@@ -75,8 +75,6 @@ class Narudzbina{
 }
 class Racun{
     private Narudzbina n;
-    ///narudzbinu
-
     ///metodu ispisuje sva jela u narudzbini
     ///i sabira cene i ispisuje zajednicku cenu
 }
