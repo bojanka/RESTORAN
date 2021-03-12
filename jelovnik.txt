@@ -1,0 +1,36 @@
+Caprese,paradajz,mocarela,maslinovo ulje,bosiljak,550
+Filleto di darpaccio fresco,biftek,rukola,limun,puter,690
+Carpaccio di salmone,losos,kapar,limun,pomorandza,rukola,masline,690
+Prosciutto e mozzarela,prsuta,mocarela,890
+Insalata frutti di mare,morski plodovi,masline,beli luk,rukola,maslinovo ulje,890
+Vittelo tonnato,teletina,krem od tune i incuna,kapar,690
+Verdura alla griglia,sampinjoni,sargarepa,celer,tikvice,plavi patlidzan,brokoli,paprika,paradajz,crveni luk,380
+Bruschette aglio olio e pomodoro,beli luk,maslinovo ulje,paradjz,bosiljak,190
+Bruschette mozzarela e pomodoro,mocarela,maslinovo ulje,paradajz,bosiljak,320
+Bruschette con salmone affumicato,losos,maslinovo ulje,rukola,kapar,490
+Bruschette vario,beli luk,paradjz,mocarela,pesto,prsuta,250
+Zuppa di pomodori,paradajz,200
+Minestrone,sargarepa,luk,brokoli,200
+Minestra di sedano,celer,malsinovo ulje,persun,200
+Piatto del giorno,luk,sargarepa,tikva,maslinovo ulje,persun,150
+Spaghetti aglio olio e peperonico,spagete,maslinovo ulje,beli luk,cili,420
+Spaghetti alla Carbonara,spagete,slanina,pavlaka,zumance,540
+Spaghetti alla Bolognese,spagete,mleveno meso,pelat,490
+Spaghetti con frutti di mare,spagete,morski plodovi,beli luk,belo vino,persun,880
+Tagliatelle prosciutto e verdura mista,taljatele,sargarepa,tikvica,prsuta,pavlaka,beli luk,550
+Tagglietele con funghi e porcini,taljatele,sampinjoni,vrgalj,beli luk,pavlaka,630
+Tagliatelle con pomodoro e mozzarella,taljatele,paradajz,pelat,mocarela,bosiljak,650
+Tagliatelle al salmone e arancia,taljatele,losos,pomorandza,pavlaka,persun,750
+Tagliatelle Neri con frutti di mare,taljatele,racici,beli luk,cili,pelat,880
+Penne alla Siciliana,pene,beli luk,masline,kapar,pelat,bosiljak,490
+Penne ai Quatro Formaggi,pene,pavlaka,gorgonzola,kackavalj,parmezan,630
+Penne con pollo verdure e crema,pene,piletina,grasak,sanrgarepa,kukuruz,pavlaka,540
+Lasagne di carne,lazanje,paradjz,mleveno meso,besamel,kackavalj,610
+Gnocchi con pollo e verdura mista,njoke,piletina,sargarepa,grasak,pavlaka,630
+Al burro e verdura,raviole,sargarepa,tikvica,sampinjoni,paprika,celer,brokoli,630
+Petto di pollo con gamberi e funghi,piletina,gambori,sampinjoni,pavlaka,880
+Filleto al Pepe Verde,biftek,vinjak,biber,pavlaka,1650
+Gelato,sladoled,60
+Tiramisu,tiramisu,290
+Torta di cioccolato,cokolada,290
+Strudel di mela con gelato,strudla,jabuka,sladoled,320
