@@ -105,12 +105,14 @@ class Racun{
 public static void main(String[] args) {
     ArrayList<Namirnica> frizider=new ArrayList<Namirnica>();
     BufferedReader br=new BufferedReader(new FileReader("frizider.txt"));
-        String linija=br.readLine();
-        String tokeni[]=linija.split(", ");
-        for(int i=0;i<tokeni.length;i++)
-        {
-            Namirnica n=new Namirnica(tokeni[i].trim());
-            frizider.add(n);
-        }
-        br.close();
+    String linija=br.readLine();
+    String tokeni[]=linija.split(", ");
+    for(int i=0;i<tokeni.length;i++)
+    {
+        Namirnica n=new Namirnica(tokeni[i].trim());
+        frizider.add(n);
+    }
+    br.close();
+    Meni meni=new Meni("jelovnik.txt");
+    meni.ispisiJela();
 }
