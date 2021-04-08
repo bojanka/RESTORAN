@@ -1,3 +1,8 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 class Namirnica{
     private String naziv;
 
@@ -8,10 +13,14 @@ class Namirnica{
     Namirnica(String naziv){
         this.naziv = naziv;
     }
+    void kupi(Namirnica n)
+    {
+        ///upisivanjem u fajl dodajemo namirnicu u frizider
+    }
 
     @Override
     public String toString() {
-        return "naziv namirnice: " + naziv;
+        return "naziv namirnice: " + naziv ;
     }
 
 }
@@ -25,9 +34,8 @@ class Pice extends Namirnica{
         this.cena=cena;
         this.gaziranost = gaziranost;
     }
-    String getCena(){return cena;}
-    void setCena(String cena){this.cena = cena;}
-    
+    double getCena(){return cena;}
+
     String getGaziranost(){
         if(gaziranost == true)
         {
@@ -91,16 +99,61 @@ class Meni{
     public void DodajJelo(Jelo jelo){
         meni.add(jelo);
     }
-    ///dodaj jelo,ispis jelo...
 }
 class Narudzbina{
-    ///liste jela i pica
-    ///metoda poruci 
+    public ArrayList<Jelo> narucenaJela=new ArrayList<Jelo>();
+    public ArrayList<Pice> narucenaPica=new ArrayList<Pice>();
+    void naruciJelo(Jelo j)
+    {
+        narucenaJela.add(j);
+    }
+    void naruciPice(Jelo p)
+    {
+        narucenaJela.add(p);
+    }
+    void ispisiNarudzbinu()
+    {
+        for (Jelo jelo : narucenaJela )
+        {
+            System.out.println(jelo.toString() + "\n");
+        }
+        for (Pice pice : narucenaPica)
+        {
+            System.out.println(pice.toString() + "\n");
+        }
+    }
 }
 class Racun{
     private Narudzbina n;
-    ///metodu ispisuje sva jela u narudzbini
-    ///i sabira cene i ispisuje zajednicku cenu
+    double ukupnaCena;
+    Racun(Jelo narucenaJela,Pice narucenaPica)
+    {
+        this.narucenaJela=narucenaJela;
+        this.narucenaPica=narucenaPica;
+    }
+    void ukupnaCena()
+    {
+        for (Jelo jelo : n.narucenaJela )
+        {
+            ukupnaCena+=jelo.getCena();
+        }
+        for (Pice pice : narucenaPica)
+        {
+            ukupnaCena+=pice.getCena();
+        }
+    }
+    void ispisiRacun()
+    {
+        n.ispisiNarudzbinu();
+        System.out.println("Cena: "+ukupnaCena);
+    }
+}
+public class NemaNamirnice extends Exception {
+
+	public NemaNamirnice(String poruka) {
+		super(poruka);
+	}
+	
 }
 public static void main(String[] args) {
     ArrayList<Namirnica> frizider=new ArrayList<Namirnica>();
