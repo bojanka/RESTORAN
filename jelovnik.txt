@@ -10,7 +10,7 @@ Bruschette mozzarela e pomodoro,320,mocarela,maslinovo ulje,paradajz,bosiljak
 Bruschette con salmone affumicato,490,losos,maslinovo ulje,rukola,kapar
 Bruschette vario,250,beli luk,paradjz,mocarela,pesto,prsuta
 Zuppa di pomodori,200,paradajz
-Minestrone,200,sargarepa,luk,brokoli
+Minestrone,200,sargarepa,beli luk,brokoli
 Minestra di sedano,200,celer,malsinovo ulje,persun
 Piatto del giorno,150,luk,sargarepa,tikva,maslinovo ulje,persun
 Spaghetti aglio olio e peperonico,420,spagete,maslinovo ulje,beli luk,cili
