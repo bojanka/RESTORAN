@@ -1,14 +1,14 @@
-Trijumf,1800
-Vinna Sol,2100
-Catarratto,1500
-Vina Esmeralda,1900
-Pinot Grigio,2550
-Chardonnay,200
-Cabernet,1750
-Aurelius,4050
-Nero d Avola,2550
-Sangre de Torro,1800
-Chianti Toscana,3600
-Cabarnet Merlot,1725
-Prosecco Extra Dry,2550
-Proseco Brut,3600
+Trijumf,1800,negazirano
+Vinna Sol,2100,gazirano
+Catarratto,1500,negazirano
+Vina Esmeralda,1900,negazirano
+Pinot Grigio,2550,negazirano
+Chardonnay,200,gazirano
+Cabernet,1750,negazirano
+Aurelius,4050,gazirano
+Nero d Avola,2550,gazirano
+Sangre de Torro,1800,negazirano
+Chianti Toscana,3600,gazirano
+Cabarnet Merlot,1725,gazirano
+Prosecco Extra Dry,2550,gazirano
+Proseco Brut,3600,negazirano
