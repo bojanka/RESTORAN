@@ -14,7 +14,7 @@ Minestrone,200,sargarepa,beli luk,brokoli
 Minestra di sedano,200,celer,malsinovo ulje,persun
 Piatto del giorno,150,luk,sargarepa,tikva,maslinovo ulje,persun
 Spaghetti aglio olio e peperonico,420,spagete,maslinovo ulje,beli luk,cili
-Spaghetti alla Carbonara,540,spagete,slanina,pavlaka,zumance
+Spaghetti alla Carbonara,540,spagete,slanina,pavlaka,jaje
 Spaghetti alla Bolognese,490,spagete,mleveno meso,pelat
 Spaghetti con frutti di mare,880,spagete,morski plodovi,beli luk,belo vino,persun
 Tagliatelle prosciutto e verdura mista,550,taljatele,sargarepa,tikvica,prsuta,pavlaka,beli luk
