@@ -18,7 +18,7 @@ Spaghetti alla Carbonara,540,spagete,slanina,pavlaka,jaje
 Spaghetti alla Bolognese,490,spagete,mleveno meso,pelat
 Spaghetti con frutti di mare,880,spagete,morski plodovi,beli luk,belo vino,persun
 Tagliatelle prosciutto e verdura mista,550,taljatele,sargarepa,tikvica,prsuta,pavlaka,beli luk
-Tagglietele con funghi e porcini,630,taljatele,sampinjoni,vrgalj,beli luk,pavlaka
+Tagglietele con funghi e porcini,630,taljatele,sampinjoni,vrganj,beli luk,pavlaka
 Tagliatelle con pomodoro e mozzarella,650,taljatele,paradajz,pelat,mocarela,bosiljak
 Tagliatelle al salmone e arancia,750,taljatele,losos,pomorandza,pavlaka,persun
 Tagliatelle Neri con frutti di mare,880,taljatele,racici,beli luk,cili,pelat
