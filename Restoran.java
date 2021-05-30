@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ class Namirnica{
     Namirnica(String naziv){
         this.naziv = naziv;
     }
+    public Namirnica(){};
 
     @Override
     public String toString() {
@@ -51,7 +53,7 @@ class Pice extends Namirnica{
 class Jelo{
     private String naziv;
     private double cena;
-    private ArrayList<Namirnica> potrebneNamirnice = new ArrayList<Namirnica>();
+    public ArrayList<Namirnica> potrebneNamirnice = new ArrayList<Namirnica>();
 
     String getNaziv(){return naziv;}
     double getCena(){return cena;}
@@ -66,8 +68,8 @@ class Jelo{
     }
 }
 class Meni{
-    private ArrayList<Jelo> meni = new ArrayList<Jelo>();
-
+    public ArrayList<Jelo> meni = new ArrayList<Jelo>();
+    public Meni(){};
     public void Ucitaj() throws IOException{
         BufferedReader br = new BufferedReader(new FileReader("jelovnik.txt"));
         String linija = br.readLine();
@@ -98,10 +100,10 @@ class Meni{
 }
 class Picovnik
 {
-    private ArrayList<Pice> picovnik = new ArrayList<Pice>();
-
-    public void Picovnik(String fajl) throws IOException{
-        BufferedReader br = new BufferedReader(new FileReader(fajl));
+    public ArrayList<Pice> picovnik = new ArrayList<Pice>();
+    public Picovnik(){};
+    public void Ucitaj() throws IOException{
+        BufferedReader br = new BufferedReader(new FileReader("picovnik.txt"));
         String linija = br.readLine();
         
         while(linija != null)
@@ -135,9 +137,9 @@ class Narudzbina{
     {
         narucenaJela.add(j);
     }
-    void naruciPice(Jelo p)
+    void naruciPice(Pice p)
     {
-        narucenaJela.add(p);
+        narucenaPica.add(p);
     }
     void ispisiNarudzbinu()
     {
@@ -154,7 +156,10 @@ class Narudzbina{
 class Racun{
     private Narudzbina n;
     double ukupnaCena;
-
+    public Racun(Narudzbina n){
+        this.n=n;
+    }
+    public Racun(){};
     void ukupnaCena()
     {
         for (Jelo jelo : n.narucenaJela )
@@ -206,10 +211,35 @@ public class Restoran {
         s.close();
         return opcija2;
     }
+    public class Frizider{
+        ArrayList<Namirnica> frizider= new ArrayList<Namirnica>();
+        public void Frizider() throws IOException{
+            BufferedReader br = new BufferedReader(new FileReader("frizider.txt"));
+            String linija = br.readLine();
+            String tokeni[] = linija.split(", ");
+            Namirnica nam= new Namirnica();
+            for(int i=0;i<tokeni.length;i++){
+                nam.setNaziv(tokeni[i].trim());
+                frizider.add(nam);
+            }
+            br.close();
+        }
+    }
+    public class Greska extends Exception{
+        public Greska(String poruka){
+            super(poruka);
+        }
+    }
     public static void main(String[] args) {
 
         int operacija;
         int operacija2;
+        Meni m=new Meni();
+        m.Ucitaj();
+        Picovnik picovnik=new Picovnik();
+        Narudzbina n = new Narudzbina();
+        Frizider f=new Frizider();
+        int brojac=0;
         
     System.out.println("-----------------------------------------------------------------------------------------------------------------------");
     System.out.println("\t\t\t\t\t  DOBRODOSLI U RESTORAN");
@@ -224,13 +254,46 @@ public class Restoran {
             {
                 operacija2 = opcije2();
                     switch(operacija2)
+                   
                     {
                     case 1:
-                    /// ispisivanje jelovnika i ubacianje u naruzbinu jela
-                    
+                        m.ispisiJela();
+                        Scanner j = new Scanner(System.in);
+                        int br=j.nextInt();
+                        if(br<=m.meni.size() && br>=1) throws Greska{
+                            for(int i=0;i<m.meni.get(br-1).potrebneNamirnice.size();i++)
+                            {
+                                for(int k=0;k<f.frizider.size();k++)
+                                {
+                                    if(!m.meni.get(br-1).potrebneNamirnice.get(i).getNaziv().equals(f.frizider.get(k))){
+                                        brojac++;
+                                    }
+                                }
+                            }
+                            if(brojac==0)
+                            {
+                                n.naruciJelo(m.meni.get(br-1));
+                            }
+                            else{
+                                throw new Greska("Ne mozemo napraviti ovo jelo.");
+                            }
+                        }
+                        else{
+                                throw new Greska("To jelo ne postoji.");
+                        }
+                        j.close();
                         break;
                     case 2:
-                    ///ispisivanje picovnika i narudzbina
+                        picovnik.ispisiPica();
+                        Scanner p = new Scanner(System.in);
+                        int index=p.nextInt();
+                        if(index<=picovnik.picovnik.size() && index>=1) throws Greska{
+                            n.naruciPice(picovnik.picovnik.get(index-1));
+                        }
+                        else{
+                            throw new Greska("To pice ne postoji.");
+                        }
+                        p.close();
                         break;
                     case 3:
                         break;
@@ -238,7 +301,8 @@ public class Restoran {
             }while(operacija<3);
             break;
         case 2:
-            ///ispisivanje racuna
+            Racun r= new Racun(n);
+            r.ispisiRacun();
             break;
         case 3:
             break;
