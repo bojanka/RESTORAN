@@ -1,8 +1,8 @@
 import java.util.Scanner;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 class Namirnica{
@@ -72,29 +72,40 @@ class Meni{
     public Meni(){};
     public void Ucitaj() throws IOException{
         BufferedReader br = new BufferedReader(new FileReader("jelovnik.txt"));
-        String linija = br.readLine();
-        Jelo o = new Jelo();
-        while(linija != null)
-        {
-            int j = 0;
-            String tokeni[] = linija.split(", ");
-            o.setNaziv(tokeni[0].trim());
-            o.setCena(Integer.parseInt(tokeni[1].trim()));
-            ArrayList<Namirnica> potrebno = new ArrayList<Namirnica>();
-            while((tokeni.length-2)>j){
-                potrebno.get(j).setNaziv(tokeni[j+2].trim());
+        try{
+            String linija = br.readLine();
+            
+            while(linija != null)
+            {   Jelo o = new Jelo();
+                String tokeni[] = linija.split(",");
+                o.setNaziv(tokeni[0].trim());
+                o.setCena(Integer.parseInt(tokeni[1].trim()));
+                ArrayList<Namirnica> potrebno = new ArrayList<Namirnica>();
+                Namirnica nam= new Namirnica();
+                for(int j=2;j<tokeni.length;j++){
+                    nam.setNaziv(tokeni[j].trim());
+                    potrebno.add(nam);
+                }
+                o.setNizNamirnica(potrebno);
+                meni.add(o);
+                linija=br.readLine();
             }
-            o.setNizNamirnica(potrebno);
-            meni.add(o);
-            linija=br.readLine();
         }
-        br.close();
+        catch(IOException e){
+            System.out.println(e);
+        }
+        finally{
+            br.close();
+        }
+        
     }
 
     void ispisiJela(){
+        int i=1;
         for (Jelo jelo : meni)
             {
-                System.out.println(jelo.toString() + "\n");
+                System.out.println(i +". " + jelo.toString() + "\n");
+                i++;
             }
     }
 }
@@ -103,22 +114,30 @@ class Picovnik
     public ArrayList<Pice> picovnik = new ArrayList<Pice>();
     public Picovnik(){};
     public void Ucitaj() throws IOException{
-        BufferedReader br = new BufferedReader(new FileReader("picovnik.txt"));
-        String linija = br.readLine();
-        
-        while(linija != null)
-        {
-            String tokeni[] = linija.split(", ");
-            if(tokeni[2].equals("gazirano"))
+        BufferedReader br=new BufferedReader(new FileReader("picovnik.txt"));;
+        try{
+            String linija = br.readLine();
+            
+            while(linija != null)
             {
-                Pice p = new Pice(tokeni[0].trim(), Integer.parseInt(tokeni[1].trim()),true);
-            }else{
-                Pice p = new Pice(tokeni[0].trim(), Integer.parseInt(tokeni[1].trim()),false);
+                String tokeni[] = linija.split(",");
+
+                if(tokeni[2].trim().equals("gazirano"))
+                {
+                    //Pice p = new Pice(tokeni[0].trim(), Integer.parseInt(tokeni[1].trim()),true);
+                    picovnik.add(new Pice(tokeni[0].trim(), Integer.parseInt(tokeni[1].trim()),true));
+                }else{
+                    picovnik.add(new Pice(tokeni[0].trim(), Integer.parseInt(tokeni[1].trim()),false));
+                }
+                linija = br.readLine();
             }
-            picovnik.add(p);
-            linija = br.readLine();
         }
-        br.close();
+        catch(IOException e){
+            System.out.println(e);
+        }
+       br.close();
+        
+        
     }
 
     void ispisiPica(){
@@ -177,66 +196,87 @@ class Racun{
         System.out.println("Cena: " + ukupnaCena);
     }
 }
-
-public class Restoran {
-    static int opcije()
-    {
-        Scanner s = new Scanner(System.in);
-        int opcija;
-        do{
-            System.out.println("\nIzaberite zeljenu operaciju:\n");
-            System.out.println(" 1. Naruciti obrok");
-            System.out.println(" 2. Racun");
-            System.out.println(" 3. Dovidjenja");
-            opcija = s.nextInt();
-            if(opcija < 1 || opcija > 3)
-            System.out.println("\nOpcija van opsega (1-3)! Izaberite zeljenu operaciju ponovo!\n");
-        }while(opcija > 1 || opcija < 3);
-        s.close();
-        return opcija;
+class Frizider{
+    ArrayList<Namirnica> frizider= new ArrayList<Namirnica>();
+    public Frizider(){};
+    public void Ucitaj() throws IOException{
+        BufferedReader br = new BufferedReader(new FileReader("frizider.txt"));
+        String linija = br.readLine();
+        String tokeni[] = linija.split(", ");
+        Namirnica nam= new Namirnica();
+        for(int i=0;i<tokeni.length;i++){
+            nam.setNaziv(tokeni[i].trim());
+            frizider.add(nam);
+        }
+        br.close();
     }
-    static int opcije2()
+}
+class Greska extends Exception{
+    public Greska(String poruka){
+        super(poruka);
+    }
+}
+public class Restoran {
+    static int opcije(BufferedReader br) throws IOException
     {
-        Scanner s = new Scanner(System.in);
-        int opcija2;
-        do{
-            System.out.println("\nIzaberite zeljenu operaciju:\n");
-            System.out.println(" 1. Naruci jelo");
-            System.out.println(" 2. Naruci pice");
-            System.out.println(" 3. Nastavi na racun");
-            opcija2 = s.nextInt();
-            if(opcija2 < 1 || opcija2 > 3)
-            System.out.println("\nOpcija van opsega (1-3)! Izaberite zeljenu operaciju ponovo!\n");
-        }while(opcija2 > 1 || opcija2 < 3);
-        s.close();
+        //Scanner s = new Scanner(System.in);
+        int opcija=3;
+        try{
+            do{
+                System.out.println("\nIzaberite zeljenu operaciju:\n");
+                System.out.println(" 1. Naruciti obrok");
+                System.out.println(" 2. Racun");
+                System.out.println(" 3. Dovidjenja");
+                opcija = Integer.parseInt(br.readLine());
+                if(opcija < 1 || opcija > 3)
+                System.out.println("\nOpcija van opsega (1-3)! Izaberite zeljenu operaciju ponovo!\n");
+            }while(opcija < 1 || opcija > 3);
+        }
+        catch(IOException e){
+            System.out.println(e);
+        }
+            return opcija;
+           
+        
+    }
+    static int opcije2(BufferedReader br)throws IOException
+    {
+        //nastavi na dovidjenja
+        int opcija2=3;
+        try{
+            do{
+                System.out.println("\nIzaberite zeljenu operaciju:\n");
+                System.out.println(" 1. Naruci jelo");
+                System.out.println(" 2. Naruci pice");
+                System.out.println(" 3. Nastavi na racun");
+                opcija2 = Integer.parseInt(br.readLine());
+                if(opcija2 < 1 || opcija2 > 3)
+                System.out.println("\nOpcija van opsega (1-3)! Izaberite zeljenu operaciju ponovo!\n");
+            }while(opcija2 < 1 || opcija2 > 3);
+        }
+        catch(IOException e){
+            System.out.println(e);
+        }
         return opcija2;
     }
-    public class Frizider{
-        ArrayList<Namirnica> frizider= new ArrayList<Namirnica>();
-        public void Frizider() throws IOException{
-            BufferedReader br = new BufferedReader(new FileReader("frizider.txt"));
-            String linija = br.readLine();
-            String tokeni[] = linija.split(", ");
-            Namirnica nam= new Namirnica();
-            for(int i=0;i<tokeni.length;i++){
-                nam.setNaziv(tokeni[i].trim());
-                frizider.add(nam);
-            }
-            br.close();
-        }
-    }
-    public class Greska extends Exception{
-        public Greska(String poruka){
-            super(poruka);
-        }
-    }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Greska {
 
         int operacija;
         int operacija2;
         Meni m=new Meni();
-        m.Ucitaj();
+        try{
+            m.Ucitaj();
+        }
+        catch(IOException e){
+            System.out.println(e);
+        }
         Picovnik picovnik=new Picovnik();
+        try{
+            picovnik.Ucitaj();
+        }
+        catch(IOException e){
+            System.out.println(e);
+        }
         Narudzbina n = new Narudzbina();
         Frizider f=new Frizider();
         int brojac=0;
@@ -244,15 +284,17 @@ public class Restoran {
     System.out.println("-----------------------------------------------------------------------------------------------------------------------");
     System.out.println("\t\t\t\t\t  DOBRODOSLI U RESTORAN");
     System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-    do
+    try {
+        BufferedReader brd = new BufferedReader(new InputStreamReader(System.in));
+        do
     {
-        operacija = opcije();
+        operacija = opcije(brd);
         switch(operacija)
         {
         case 1:
             do
             {
-                operacija2 = opcije2();
+                operacija2 = opcije2(brd);
                     switch(operacija2)
                    
                     {
@@ -260,7 +302,7 @@ public class Restoran {
                         m.ispisiJela();
                         Scanner j = new Scanner(System.in);
                         int br=j.nextInt();
-                        if(br<=m.meni.size() && br>=1) throws Greska{
+                        if(br<=m.meni.size() && br>=1){
                             for(int i=0;i<m.meni.get(br-1).potrebneNamirnice.size();i++)
                             {
                                 for(int k=0;k<f.frizider.size();k++)
@@ -287,7 +329,7 @@ public class Restoran {
                         picovnik.ispisiPica();
                         Scanner p = new Scanner(System.in);
                         int index=p.nextInt();
-                        if(index<=picovnik.picovnik.size() && index>=1) throws Greska{
+                        if(index<=picovnik.picovnik.size() && index>=1){
                             n.naruciPice(picovnik.picovnik.get(index-1));
                         }
                         else{
@@ -308,5 +350,12 @@ public class Restoran {
             break;
         }
     }while(operacija<3);
+    brd.close();
+            
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    
 }
 }
