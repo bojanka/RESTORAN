@@ -85,6 +85,7 @@ class Meni{
                 for(int j=2;j<tokeni.length;j++){
                     nam.setNaziv(tokeni[j].trim());
                     potrebno.add(nam);
+                    ///redom dodaje dobre namirnice ali kad god doda novu on sve stare pretvori u tu novu
                 }
                 o.setNizNamirnica(potrebno);
                 meni.add(o);
@@ -201,13 +202,18 @@ class Frizider{
     public Frizider(){};
     public void Ucitaj() throws IOException{
         BufferedReader br = new BufferedReader(new FileReader("frizider.txt"));
-        String linija = br.readLine();
-        String tokeni[] = linija.split(", ");
+        try{
+            String linija = br.readLine();
+        String tokeni[] = linija.split(",");
         Namirnica nam= new Namirnica();
         for(int i=0;i<tokeni.length;i++){
             nam.setNaziv(tokeni[i].trim());
             frizider.add(nam);
         }
+        }catch(IOException e){
+            System.out.println(e);
+        }
+        
         br.close();
     }
 }
@@ -261,6 +267,7 @@ public class Restoran {
     }
     public static void main(String[] args) throws Greska {
 
+
         int operacija;
         int operacija2;
         Meni m=new Meni();
@@ -279,6 +286,13 @@ public class Restoran {
         }
         Narudzbina n = new Narudzbina();
         Frizider f=new Frizider();
+        try{
+            f.Ucitaj();
+        }
+        catch(IOException e){
+            System.out.println(e);
+        }
+        
         int brojac=0;
         
     System.out.println("-----------------------------------------------------------------------------------------------------------------------");
@@ -353,7 +367,6 @@ public class Restoran {
     brd.close();
             
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     
