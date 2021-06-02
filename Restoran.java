@@ -142,9 +142,11 @@ class Picovnik
     }
 
     void ispisiPica(){
+        int i=1;
         for (Pice pice : picovnik)
             {
-                System.out.println(pice.toString() + "\n");
+                System.out.println(i+". "+pice.toString() + "\n");
+                i++;
             }
     }
 
