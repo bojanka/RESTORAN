@@ -81,11 +81,11 @@ class Meni{
                 o.setNaziv(tokeni[0].trim());
                 o.setCena(Integer.parseInt(tokeni[1].trim()));
                 ArrayList<Namirnica> potrebno = new ArrayList<Namirnica>();
-                Namirnica nam= new Namirnica();
+                
                 for(int j=2;j<tokeni.length;j++){
+                    Namirnica nam= new Namirnica();
                     nam.setNaziv(tokeni[j].trim());
                     potrebno.add(nam);
-                    ///redom dodaje dobre namirnice ali kad god doda novu on sve stare pretvori u tu novu
                 }
                 o.setNizNamirnica(potrebno);
                 meni.add(o);
@@ -204,16 +204,18 @@ class Frizider{
         BufferedReader br = new BufferedReader(new FileReader("frizider.txt"));
         try{
             String linija = br.readLine();
-        String tokeni[] = linija.split(",");
-        Namirnica nam= new Namirnica();
-        for(int i=0;i<tokeni.length;i++){
-            nam.setNaziv(tokeni[i].trim());
-            frizider.add(nam);
-        }
+            String tokeni[] = linija.split(",");
+            for(int i=0;i<tokeni.length;i++){
+                Namirnica nam= new Namirnica();
+                nam.setNaziv(tokeni[i].trim());
+                frizider.add(nam);
+            }
+            for(int k=0;k<frizider.size();k++){
+                System.out.println(frizider.get(k));
+            }
         }catch(IOException e){
             System.out.println(e);
         }
-        
         br.close();
     }
 }
